@@ -1,29 +1,39 @@
-Object.prototype.shouldEqual = function (that) {
-	equals(this, that);
+// Methods to test.
+var add = function (x, y) { return x + y; };
+var subtract = function (x, y) { return x - y; };
+
+// **********
+// **********
+// **********
+
+when("adding two numbers");
+
+context = function() {
+	this.num1 = 1;
+	this.num2 = 2;
 };
 
-Object.prototype.shouldNotEqual = function (that) {
-	ok(this != that);
+because = function () { 
+	this.result = add(this.num1, this.num2); 
 };
 
-var _contextName;
+should("add the numbers", function () { this.result.shouldEqual(this.num1 + this.num2); });
+should("not subtract the numbers", function () { this.result.shouldNotEqual(this.num1 - this.num2); });
 
-function when(contextName) { 
-	delete because;
-	delete context;
-	_contextName = contextName;
-}
+// **********
+// **********
+// **********
 
-function should(specName, assertion) {
-	var contextName = _contextName;
-	var localContext = context;
-	var localBecause = because;
-	var localAssertion = assertion;
-	var currentContext = {};
-	
-	test("When " + contextName + " it should " + specName, function () {
-		localContext.call(currentContext);
-		localBecause.call(currentContext);
-		localAssertion.call(currentContext);
-	});
-}
+when("subtracting two numbers");
+
+context = function() {
+	this.num1 = 1;
+	this.num2 = 2;
+};
+
+because = function () {
+	this.result = subtract(this.num1, this.num2);;
+};
+
+should("subtract the numbers", function () { this.result.shouldEqual(this.num1 - this.num2); });
+should("not add the numbers", function () { this.result.shouldNotEqual(this.num1 + this.num2); });
