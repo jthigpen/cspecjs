@@ -17,8 +17,8 @@ because = function () {
 	this.result = add(this.num1, this.num2); 
 };
 
-should("add the numbers", function () { this.result.shouldEqual(this.num1 + this.num2); });
-should("not subtract the numbers", function () { this.result.shouldNotEqual(this.num1 - this.num2); });
+should("add the numbers", function () this.result.shouldEqual(this.num1 + this.num2));
+should("not subtract the numbers", function () this.result.shouldNotEqual(this.num1 - this.num2));
 
 // **********
 // **********
