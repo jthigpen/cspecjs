@@ -1,13 +1,3 @@
-String.prototype.startsWith = function (string) {
-	return this.indexOf(string) === 0;
-};
-
-function clone(object) {
-	function F() {}
-	F.prototype = object;
-	return new F;
-}
-
 Object.prototype.shouldEqual = function (that) {
 	equals(this, that);
 };
